@@ -1,0 +1,39 @@
+.header {
+.fixed-header{
+  position: absolute;
+}
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ 
+  .logo {
+    max-height: 50px;
+  }
+  .transparent{
+    background-color: transparent;
+    border :white 1px solid;
+    color: white;
+  }
+  .btn-header {
+    margin: 0 10px;
+    color: white;
+    font-weight: 600;
+  }
+}
+
+
+@media screen and (max-width:768px) {
+    .header {
+   padding-top: 10px;
+        
+        .logo {
+          max-height: 35px;
+        }
+        .btn-header {
+            padding: 5px 8px;
+            
+        }
+      }
+      
+}

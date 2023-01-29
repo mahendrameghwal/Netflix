@@ -1,0 +1,20 @@
+@mixin fonts ($size, $weight){
+    font-size: $size;
+    font-weight: $weight;
+}
+@mixin Lineheight ($height){
+    line-height: $height;
+}
+@mixin autos ($width,$x,$y){
+    width: $width;
+    margin: $x $y;
+}
+
+@mixin padding ($x, $y){
+padding: $x, $y;
+}
+
+@mixin margin ($x, $y){
+    margin: $x, $y;
+    }
+    

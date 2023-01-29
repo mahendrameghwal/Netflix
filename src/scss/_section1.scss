@@ -1,0 +1,106 @@
+.section {
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0),
+      rgb(0, 0, 0, 0.98)
+    ),
+    url("../images/mainimg.jpg");
+  margin-top: -64px;
+  background-size: cover;
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  display: grid;
+  place-items: center;
+  .section-content {
+    width: 70%;
+    color: $white;
+
+    h1 {
+      @include Lineheight(60px);
+      @include fonts(3.2rem, 600);
+    }
+
+    p {
+      @include fonts(1.5rem, 500);
+      @include Lineheight(40px);
+    }
+    .medium {
+      @include fonts(1.3rem, 400);
+      @include Lineheight(45px);
+
+    }
+    .div-input{
+     height: 50px;
+     @include autos (90% , 20px , auto);
+     .input-main{
+       @include autos (70% , 0 , auto);
+       height: 49px;
+       @include fonts(1.3rem, 400);
+       border: none;
+       outline: none;
+      
+      }
+      .started{
+        height: 51px;
+        align-items: center;
+
+        @include fonts(1rem, 400);      
+
+       }
+    }
+    
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    height: 85vh !important;
+    background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.6),
+        rgb(0, 0, 0, 0.9)
+      ),
+      url("../images/mainimg.jpg");
+
+    .section-content {
+    
+      width: 90%;
+
+      h1 {
+        @include fonts(2.1rem, 600);
+        @include Lineheight(40px);
+      }
+
+      p {
+        @include fonts(1.5rem, 500);
+        @include Lineheight(35px);
+      }
+      .medium {
+        @include fonts(1.1rem, 400);
+        @include Lineheight(20px);
+        margin: 10px 0;
+  
+      }
+
+
+      .div-input{
+        height: 30px;
+         .input-main{
+          @include autos (100% , 20px , auto);
+          height: 35px;
+          @include fonts(1rem, 400);
+          border: none;
+          outline: none;
+         
+         }
+         .started{
+           height: 36px;
+           align-items: center;
+   
+           @include fonts(1rem, 400);      
+   
+          }
+       }
+    }
+  }
+}
