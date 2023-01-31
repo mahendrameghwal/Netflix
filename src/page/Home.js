@@ -1,5 +1,5 @@
 import React from 'react' ;
-import { Section1 , Section2  , FAQ} from '../components/Mainsection';
+import { Section1 , Section2  , FAQ, } from '../components/Mainsection';
 
 
 const Home = () => {
@@ -8,6 +8,7 @@ const Home = () => {
    <Section1/>
    <Section2/>
    <FAQ/>
+  
     </div>
   )
 }

@@ -1,0 +1,52 @@
+.signin {
+  .section-content {
+    display: none;
+  }
+  .signin-container {
+    color: $white;
+    background-color: $Transparent;
+    width: 440px;
+    max-width: 50%;
+    position: absolute;
+    top: 40%;
+    z-index: 11;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .inputs-container {
+      width: 90%;
+      margin: 0 auto;
+      padding: 30px 0;
+      input {
+        outline: none;
+        border: none;
+        @include fonts(1.1rem, 400);
+        width: 100%;
+        padding: 10px 20px;
+        margin: 15px 0;
+        background-color: $darkgrey;
+        color: $white;
+      }
+
+      .submit-btn{
+        width: 100%;
+        padding: 12px 0;
+        @include fonts(1rem, 500)
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .signin {
+    .signin-container {
+      width: 400px;
+      max-width:95%;
+      position: absolute;
+      margin-top: 30px;
+ 
+    }
+
+ 
+}
+}

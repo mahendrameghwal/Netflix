@@ -1,14 +1,12 @@
 @import "../src/scss/utils/mixin", "../src/scss/utils/variable","../src/scss/utils/global";
-@import "../src/scss/Header", "../src/scss/Home", "./scss/_section1", "./scss/_section2";
+@import "../src/scss/Header", "../src/scss/Home", "./scss/_section1", "./scss/_section2", "./scss/Footer", "./scss/signin";
 
 * , *::before , *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.tv{
-  border: 2px solid red;
-}
+
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;

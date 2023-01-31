@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {MdArrowForwardIos} from "react-icons/md"
 
 const Section = () => {
+  const [content , setcontent]= useState(true)
   return (
     <div className="section sections h-100">
       <div className="section-content tc">
