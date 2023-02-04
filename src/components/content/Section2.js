@@ -10,15 +10,15 @@ import { device1, video1 , mobile , children} from "../../images/image";
 const Section2 = () => {
   return (
     <main>
-      <div class="one">
-        <div class="text">
+      <div className="one">
+        <div className="text">
           <h1>Enjoy on your TV.</h1>
           <p>
             Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray
             players and more.
           </p>
         </div>
-        <div class="image">
+        <div className="image">
           <img src={device1} alt="" />
           <div className="video">
             <video    src={video1}

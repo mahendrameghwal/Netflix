@@ -21,32 +21,51 @@
         border: none;
         @include fonts(1.1rem, 400);
         width: 100%;
-        padding: 10px 20px;
+        padding: 10px 6px;
         margin: 15px 0;
         background-color: $darkgrey;
         color: $white;
       }
 
-      .submit-btn{
+      .submit-btn {
         width: 100%;
         padding: 12px 0;
-        @include fonts(1rem, 500)
+        @include fonts(1rem, 500);
       }
+      .err{
+        color: #eb8703;
+        @include fonts(0.9rem, 300);
+        margin-top: -30px;
+      }
+    }
+  }
+  .signupbtn {
+    padding: 0;
+    text-decoration: underline;
+    color: $footertext;
+    @include fonts(1rem, 500);
+    p{
+      padding: 0 30px;
+    }
+  }
+  .googlebtn{
+    padding: 0;
+    text-decoration: underline;
+    color: $footertext;
+    @include fonts(1rem, 500);
+    p{
+      padding: 0 30px;
     }
   }
 }
 
 @media screen and (max-width: 768px) {
-
   .signin {
     .signin-container {
       width: 400px;
-      max-width:95%;
+      max-width: 95%;
       position: absolute;
-      margin-top: 30px;
- 
+      margin-top: 50px;
     }
-
- 
-}
+  }
 }
