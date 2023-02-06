@@ -1,20 +1,31 @@
 import { logo } from "../images/image";
-import { Link } from "react-router-dom";
+import { Link  , useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Usefirebase } from "../Firebase/Firebase";
+
 
 const Header = () => {
-  const [user, setuser] = useState("");
-  // useEffect(() => {
-  //   auth.onAuthStateChanged(async (user) => {
-  //     setuser(user);
-  //     console.log(user);
-  //   });
-  // }, []);
-  // const Signout = () => {
-  //   auth.signOut().then(() => {
-  //     setuser(null);
-  //   });
-  // };
+  const [users, setusers] = useState("");
+const navigate = useNavigate()
+
+ const Firebase = Usefirebase();
+
+  const Islogin = Firebase.LoginOrNot;
+
+  
+
+console.log(Islogin);
+ const Signoutuser =()=>{
+  Firebase.LogoutUser();
+  navigate("/")
+
+ }
+
+ const Signinuser =()=>{
+  navigate("/signin")
+ }
+
+ 
   return (
     <div className="fixed-header header container-fluid">
       <div>
@@ -26,14 +37,14 @@ const Header = () => {
       <div>
         <button className="btn btn-header transparent">English</button>
 
-        {user ? (
-          <Link to={"/"}>
-            <button  className="btn btn-header btn-read">Sign out</button>
-          </Link>
+        {Islogin  ? (
+         
+            <button onClick={Signoutuser}  className="btn btn-header btn-read">Sign out</button>
+         
         ) : (
-          <Link to={"/signin"}>
-            <button className="btn btn-header btn-read">Sign in</button>
-          </Link>
+          
+            <button onClick={Signinuser} className="btn btn-header btn-read">Sign in</button>
+        
         )}
       </div>
     </div>

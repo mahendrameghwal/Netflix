@@ -1,10 +1,9 @@
-import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useState , useEffect } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithPopup, signInWithEmailAndPassword  , onAuthStateChanged ,signOut
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set } from "firebase/database";
@@ -34,25 +33,54 @@ const GoogleProvider = new GoogleAuthProvider();
 
 
 export const Usefirebase = () => useContext(FirebaseContext);
+
 // provider
 export const FirebaseProvider = (props) => {
- 
-
-  const SignUserWithEmailAndPassword = (name ,email, password) => {
-    return createUserWithEmailAndPassword(FirebaseAuth, name , email, password);
+  
+  //signup for make a new acount of user
+  const SignUserWithEmailAndPassword = (email, password) => {
+    return createUserWithEmailAndPassword(FirebaseAuth, email, password);
   };
-
+ //sign with google
   const SignWithGoogle = () => {
     signInWithPopup(FirebaseAuth, GoogleProvider);
+    
   };
 
-  //put data in real time database
+//login with email and password
+ const LoginUserWithEmailAndPassword=(email, password)=>{
+  return signInWithEmailAndPassword(FirebaseAuth,email ,password)
+ }
 
+ const LogoutUser =()=>{
+return signOut(FirebaseAuth)
+
+ }
+
+
+  //put data in real time database
   const PutData = (key, data) => set(ref(Database, key), data);
+
+// check user loggedin or not 
+const [user, setuser]=useState("");
+useEffect(() => {
+ 
+  
+  onAuthStateChanged(FirebaseAuth,(user)=>{
+    user ? setuser(user) : setuser(null)
+  })
+  
+}, [user])
+
+
+
+ const LoginOrNot  = user ? true : false;
+
+
 
   return (
     <FirebaseContext.Provider
-      value={{  SignUserWithEmailAndPassword, PutData, SignWithGoogle }}
+      value={{ LoginOrNot, LogoutUser,  SignUserWithEmailAndPassword, PutData,LoginUserWithEmailAndPassword , SignWithGoogle }}
     >
       {props.children}
     </FirebaseContext.Provider>

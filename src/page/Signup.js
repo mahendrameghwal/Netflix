@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Section1 } from "../components/Mainsection";
 import { Link, useNavigate } from "react-router-dom";
-import {Usefirebase } from "../Firebase/Firebase";
-
+import { Usefirebase } from "../Firebase/Firebase";
 
 const Signup = () => {
   const Firebase = Usefirebase();
+  // console.log(Firebase);
 
   const navigate = useNavigate();
 
-  // const [ user, setuser] = useState(null);
+ 
   //! User information
   const [values, setvalues] = useState({
     name: "",
@@ -19,35 +19,30 @@ const Signup = () => {
 
   const [errmsg, seterrmsg] = useState("");
 
-
   const HandleForm = async (e) => {
     e.preventDefault();
 
-    await Firebase.SignUserWithEmailAndPassword(
-      values.name,
-      values.email,
-      values.password
-    )
+    await Firebase.SignUserWithEmailAndPassword(values.email, values.password)
       .then((Response) => {
-        Firebase.PutData("users/" + values.name, values.email, values.password);
-
         navigate("/signin");
-        console.log("success");
-        console.log(Response.user.email);
-        console.log(values.name);
+        Firebase.PutData("users/" + values.name, values.email, values.password);
+        
       })
-
       .catch((error) => {
-        console.log(error.code);
         switch (error.code) {
           case "auth/email-already-in-use":
             seterrmsg(
               "The email address is already in use by another account."
             );
             break;
-          case "auth/invalid-email":
-            seterrmsg("The email address is not a vaild email");
+          case "auth/network-request-failed":
+            seterrmsg(
+              "A network error has occurred. Please check your connection and try again."
+            );
+            break;
 
+          case "auth/invalid-email":
+            seterrmsg("The email address is not valid");
             break;
           case "auth/weak-password":
             seterrmsg("please fill a strong password");
@@ -56,7 +51,7 @@ const Signup = () => {
             if (!values.name || !values.email || !values.password) {
               seterrmsg("please fill All values correctly ");
             } else if (!values.name) {
-              seterrmsg("please fill a vaild email  ");
+              seterrmsg("please fill a vaild name ");
             } else if (!values.email) {
               seterrmsg("please fill a vaild email  ");
             } else if (!values.password) {
@@ -75,7 +70,15 @@ const Signup = () => {
       <div className=" signin-container">
         <section className="inputs-container">
           <form>
-            <p style={{ fontSize:"0.94rem", textAlign: "center", color: "#eb8703" }}>{errmsg}</p>
+            <p
+              style={{
+                fontSize: "0.90rem",
+                textAlign: "center",
+                color: "#eb8703",
+              }}
+            >
+              {errmsg}
+            </p>
             <h2>Sign up</h2>
             <label>Name</label> <br />
             {}
@@ -107,8 +110,7 @@ const Signup = () => {
               placeholder="password"
               required
             />
-            <Link to={"/signin"}>
-              {" "}
+           
               <button
                 onClick={HandleForm}
                 type="submit"
@@ -116,6 +118,17 @@ const Signup = () => {
               >
                 Register
               </button>
+          
+            <Link
+              style={{
+                fontSize: "0.90rem",
+                textAlign: "center",
+                color: "#737373",
+                
+              }}
+              to={"/signin"}
+            >
+              Log in
             </Link>
           </form>
         </section>
