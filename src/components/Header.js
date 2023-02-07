@@ -5,25 +5,36 @@ import { Usefirebase } from "../Firebase/Firebase";
 
 
 const Header = () => {
-  const [users, setusers] = useState("");
+
 const navigate = useNavigate()
+const Firebase = Usefirebase();
+const Islogin = Firebase.LoginOrNot;
 
- const Firebase = Usefirebase();
+// useEffect(()=>{
+//   if (Firebase.LoginOrNot) {
+//     navigate("/main")
+//   }
+ 
+//  },[Firebase, navigate])
 
-  const Islogin = Firebase.LoginOrNot;
 
-  
-
-console.log(Islogin);
- const Signoutuser =()=>{
-  Firebase.LogoutUser();
-  navigate("/")
+const Signoutuser =()=>{
+  Firebase.LogoutUser().then(()=>{
+    navigate("/")
+  })
+ 
 
  }
 
- const Signinuser =()=>{
+ 
+const Signinuser =()=>{
   navigate("/signin")
  }
+
+
+
+
+
 
  
   return (
@@ -37,15 +48,15 @@ console.log(Islogin);
       <div>
         <button className="btn btn-header transparent">English</button>
 
-        {Islogin  ? (
+        {Islogin  ? 
          
             <button onClick={Signoutuser}  className="btn btn-header btn-read">Sign out</button>
          
-        ) : (
+         : 
           
-            <button onClick={Signinuser} className="btn btn-header btn-read">Sign in</button>
+          <Link to={"/signin"}>  <button onClick={Signinuser} className="btn btn-header btn-read">Sign in</button></Link>
         
-        )}
+        }
       </div>
     </div>
   );

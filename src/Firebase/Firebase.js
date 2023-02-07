@@ -37,23 +37,24 @@ export const Usefirebase = () => useContext(FirebaseContext);
 // provider
 export const FirebaseProvider = (props) => {
   
+  
   //signup for make a new acount of user
-  const SignUserWithEmailAndPassword = (email, password) => {
-    return createUserWithEmailAndPassword(FirebaseAuth, email, password);
-  };
+  const SingUpUserEmailAndPassword =(email, password)=>{
+    return createUserWithEmailAndPassword(FirebaseAuth,email, password)
+  }
  //sign with google
   const SignWithGoogle = () => {
-    signInWithPopup(FirebaseAuth, GoogleProvider);
-    
+  return  signInWithPopup(FirebaseAuth, GoogleProvider);
+  
   };
 
 //login with email and password
  const LoginUserWithEmailAndPassword=(email, password)=>{
-  return signInWithEmailAndPassword(FirebaseAuth,email ,password)
+   return signInWithEmailAndPassword(FirebaseAuth,email ,password);
  }
-
+ 
  const LogoutUser =()=>{
-return signOut(FirebaseAuth)
+return signOut(FirebaseAuth);
 
  }
 
@@ -61,12 +62,11 @@ return signOut(FirebaseAuth)
   //put data in real time database
   const PutData = (key, data) => set(ref(Database, key), data);
 
-// check user loggedin or not 
-const [user, setuser]=useState("");
-useEffect(() => {
- 
+  // check user loggedin or not 
   
-  onAuthStateChanged(FirebaseAuth,(user)=>{
+  const [user,setuser]= useState(null);
+  useEffect(() => {
+   onAuthStateChanged(FirebaseAuth,(user)=>{
     user ? setuser(user) : setuser(null)
   })
   
@@ -80,7 +80,7 @@ useEffect(() => {
 
   return (
     <FirebaseContext.Provider
-      value={{ LoginOrNot, LogoutUser,  SignUserWithEmailAndPassword, PutData,LoginUserWithEmailAndPassword , SignWithGoogle }}
+      value={{ LoginOrNot, LogoutUser,  SingUpUserEmailAndPassword, PutData,LoginUserWithEmailAndPassword , SignWithGoogle }}
     >
       {props.children}
     </FirebaseContext.Provider>

@@ -1,6 +1,6 @@
 
-import React from "react";
-import { BrowserRouter, Routes, Route , useNavigate , useEffect } from "react-router-dom";
+import React  from "react";
+import { BrowserRouter, Routes, Route , useNavigate  } from "react-router-dom";
 import Home from "./page/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -8,10 +8,11 @@ import Signin from "./page/Signin";
 import Signup from "./page/Signup";
 import Main from "./page/Main";
 
+
   
+ 
 const App = () => {
-
-
+ 
 
   return (
     <BrowserRouter>

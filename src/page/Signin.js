@@ -9,21 +9,26 @@ const Signin = () => {
   const Firebase = Usefirebase();
   const navigate = useNavigate();
 
+
+  useEffect(()=>{
+    if (Firebase.LoginOrNot) {
+      navigate("/main")
+    }
+  
+   },[Firebase, navigate ])
+
   //for password show and hide
   const [showpassword, setshowpassword] = useState();
 
   const [ErrorMessage, setErrorMessage] = useState("");
+
+
 
   const [values, setvalues] = useState({
     email: "",
     password: "",
   });
     
-   useEffect(()=>{
-    if (Firebase.LoginOrNot) {
-      navigate("/main")
-    }
-   })
 
    
   const HandleGoogle= async(e)=>{
@@ -31,7 +36,7 @@ const Signin = () => {
        try {
          await Firebase.SignWithGoogle().then((response)=>{
            console.log(response);
-           Firebase.PutData("users/" + values.email, values.password);
+           navigate("/main")
         })
        } catch (error) {
         setErrorMessage(error)
@@ -39,6 +44,10 @@ const Signin = () => {
         
      
   }
+
+  
+  
+
 
   const HandleForm = async (e) => {
     e.preventDefault();
@@ -87,6 +96,8 @@ const Signin = () => {
       setErrorMessage(error);
     }
   };
+
+
 
   return (
     <div className="signin">
@@ -153,12 +164,7 @@ const Signin = () => {
                 <span>OR</span>
               </div>
              
-              <button onClick={Firebase.SignWithGoogle}
-              type="submit"
-              className=" submit-btn google btn-read btn my"
-            >
-              <FcGoogle /> Sign with Google
-            </button>
+             
             </section>
           </section>
 
@@ -168,6 +174,13 @@ const Signin = () => {
             </button>
           </Link>
         </form>
+
+        <button onClick={HandleGoogle}
+        type="submit"
+        className=" submit-btn google btn-read btn my"
+      >
+        <FcGoogle /> Sign with Google
+      </button>
       </div>
     </div>
   );

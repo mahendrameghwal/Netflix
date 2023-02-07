@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { Section1 } from "../components/Mainsection";
 import { Link, useNavigate } from "react-router-dom";
 import { Usefirebase } from "../Firebase/Firebase";
 
 const Signup = () => {
   const Firebase = Usefirebase();
-  // console.log(Firebase);
+  
 
   const navigate = useNavigate();
+
+
+  useEffect(()=>{
+    if (Firebase.LoginOrNot) {
+      navigate("/main")
+    }
+  
+   },[Firebase, navigate ])
 
  
   //! User information
@@ -22,45 +30,46 @@ const Signup = () => {
   const HandleForm = async (e) => {
     e.preventDefault();
 
-    await Firebase.SignUserWithEmailAndPassword(values.email, values.password)
-      .then((Response) => {
-        navigate("/signin");
-        Firebase.PutData("users/" + values.name, values.email, values.password);
-        
-      })
-      .catch((error) => {
-        switch (error.code) {
+    await Firebase.SingUpUserEmailAndPassword(values.email, values.password)
+    .then((Response) => {
+      navigate("/signin");
+      Firebase.PutData("users/" + values.name, values.email, values.password);
+          console.log(Response);
+    })
+    .catch((error) => {
+          switch (error.code) {
           case "auth/email-already-in-use":
-            seterrmsg(
-              "The email address is already in use by another account."
-            );
-            break;
-          case "auth/network-request-failed":
-            seterrmsg(
-              "A network error has occurred. Please check your connection and try again."
-            );
-            break;
+          seterrmsg(
+            "The email address is already in use by another account."
+          );
+          break;
+           case "auth/network-request-failed":
+          seterrmsg(
+            "A network error has occurred. Please check your connection and try again."
+          );
+          break;
 
           case "auth/invalid-email":
-            seterrmsg("The email address is not valid");
-            break;
+          seterrmsg("The email address is not valid");
+          break;
           case "auth/weak-password":
-            seterrmsg("please fill a strong password");
-            break;
+          seterrmsg("please fill a strong password");
+          break;
           default:
-            if (!values.name || !values.email || !values.password) {
-              seterrmsg("please fill All values correctly ");
-            } else if (!values.name) {
-              seterrmsg("please fill a vaild name ");
-            } else if (!values.email) {
-              seterrmsg("please fill a vaild email  ");
-            } else if (!values.password) {
-              seterrmsg("please  fill password ");
-            }
+          if (!values.name || !values.email || !values.password) {
+            seterrmsg("please fill All values correctly ");
+          } else if (!values.name) {
+            seterrmsg("please fill a vaild name ");
+          } else if (!values.email) {
+            seterrmsg("please fill a vaild email  ");
+          } else if (!values.password) {
+            seterrmsg("please  fill password ");
+          }
 
-            break;
-        }
-      });
+          break;
+      }
+    });
+
   };
 
   return (
@@ -116,7 +125,7 @@ const Signup = () => {
                 type="submit"
                 className="submit-btn btn-read btn"
               >
-                Register
+                Create acount
               </button>
           
             <Link
