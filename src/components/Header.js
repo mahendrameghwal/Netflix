@@ -10,12 +10,12 @@ const navigate = useNavigate()
 const Firebase = Usefirebase();
 const Islogin = Firebase.LoginOrNot;
 
-// useEffect(()=>{
-//   if (Firebase.LoginOrNot) {
-//     navigate("/main")
-//   }
+useEffect(()=>{
+  if (Firebase.LoginOrNot) {
+    navigate("/main")
+  }
  
-//  },[Firebase, navigate])
+ },[Firebase, navigate])
 
 
 const Signoutuser =()=>{
@@ -38,7 +38,7 @@ const Signinuser =()=>{
 
  
   return (
-    <div className="fixed-header header container-fluid">
+    <div className="fixed-header header ">
       <div>
         <Link to={"/"}>
           <img alt="netflix-logo" className="logo" src={logo} />

@@ -1,5 +1,5 @@
 @import "../src/scss/utils/mixin", "../src/scss/utils/variable","../src/scss/utils/global";
-@import "../src/scss/Header", "../src/scss/Home", "./scss/_section1", "./scss/_section2", "./scss/Footer", "./scss/signin";
+@import "../src/scss/Header", "../src/scss/Home", "./scss/_section1", "./scss/_section2", "./scss/Footer", "./scss/signin" , "./scss/UpcomingMovies","./scss/Rows" ,"./scss/MoviesDetails";
 
 * , *::before , *::after {
   margin: 0;
@@ -10,8 +10,17 @@
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
+  height: 100%;
+  position: relative;
+  background-color: $black;
   .mx-auto {
     margin: 0 auto;
+  }
+  .white{
+    color:white;
+  }
+  .mx{
+  margin: 0 20px;
   }
   .my{
     margin: 20px 0;
@@ -36,13 +45,23 @@ body {
     color: $white;
     transition: 0.5s background;
   }
+  .white-btn{
+    background-color: hsl(0, 0%, 90%);
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .gray-btn{
+    background-color: hsl(0, 0%, 50%); 
+    font-size: 1rem;
+    
+  }
 
   .btn-read:hover,
   .btn-read:active {
     background-color: hsl(357, 92%, 40%);
   }
   .btn {
-    padding: 8px 15px;
+    padding: 8px 25px;
     border-radius: 2px;
     cursor: pointer;
   }

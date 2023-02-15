@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+.upcoming {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  height: 90vh;
+  filter: brightness(90%);
+
+  z-index: -1;
+  display: block;
+  align-items: center;
+
+  .movies-details-wrapper {
+    color: white;
+    background: linear-gradient(to left, #0000, #000000b4, #000000f8);
+    width: 80%;
+    text-align: left;
+    height: 100%;
+    padding-left: 50px;
+    padding-top: 10%;
+
+    .movies-details {
+      padding: 0 20px;
+      display: grid;
+      width: 50%;
+      text-align: left;
+      .title {
+        font-family: "Gentium Book Plus", serif;
+        letter-spacing: 2px;
+        font-size: 3rem;
+      }
+      .descrtiption {
+        line-height: 30px;
+        font-weight: 400;
+      }
+      .gray-btn {
+        font-weight: bold;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .upcoming {
+    background-size: cover;
+
+    .movies-details-wrapper {
+      background: linear-gradient(
+        to left,
+        rgba(1, 0, 0, 0.87),
+        #000000a6,
+        #0000005f
+      );
+      width: 100%;
+      text-align: left;
+      height: 100%;
+      padding-left: 0;
+      padding-top: 10%;
+
+      .movies-details {
+        margin-top: 100px;
+        padding: 0 20px;
+        display: grid;
+        width: 100%;
+        text-align: center;
+        .title {
+          letter-spacing: -2px;
+          font-size: 2rem;
+        }
+        .descrtiption {
+          line-height: 20px;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+        .gray-btn,
+        .white-btn {
+          font-weight: bold;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

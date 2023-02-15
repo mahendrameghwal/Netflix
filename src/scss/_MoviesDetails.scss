@@ -1,0 +1,129 @@
+.movie-details {
+  color: white;
+  padding: 10px 20px;
+
+  .movieinfo {
+    padding: 20px 50px ;
+    display: flex;
+    gap: 80px;
+    .moviedetail-row-1 {
+      width: 30%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .moviedetail-row-2 {
+      width: 50%;
+      padding: 20px 0;
+      .title {
+        font-weight: 500;
+        font-size: 2.2rem;
+        line-height: 70px;
+      }
+
+      .overview {
+        padding: 30px 0;
+        text-align: left;
+       
+        h2 {
+          font-size: 2rem;
+          font-weight: 400;
+          line-height: 60px;
+        }
+        p {
+          line-height: 30px;
+          width: 100%;
+          padding: 0;
+          font-size: 1.1rem;
+        }
+        .tagline-head{
+          color: hsl(0, 0%, 85%);
+
+        }
+        .tagline{
+          line-height: 20px;
+          color: #737373;
+          margin-top: 40px;
+          width: 100%;
+          font-size: 1rem;
+          text-align: left;
+          
+        }
+      }
+
+      .movie-times {
+        color: $footertext;
+        font-weight: 500;
+        span{
+          margin-right:  15px;
+        }
+      }
+      .recommend{
+        display:flex;
+        flex-wrap: nowrap;
+        gap: 20px;
+        overflow-x: scroll;
+        &::-webkit-scrollbar{
+          display: none;
+        }
+          
+        img{
+          height: 100px;
+          transition: 0.5s;
+          &:hover{
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movie-details {
+    padding: 40px 0;
+    .movieinfo {
+      flex-direction: column;
+      margin: 0 auto;
+      width: 100%;
+      gap: 20px;
+      
+    padding: 20px 0px ;
+      .moviedetail-row-1 {
+        width: 80%;
+
+        margin: 0 auto;
+      }
+
+      .moviedetail-row-2 {
+        width: 80%;
+        margin: 0 auto;
+        padding: 0;
+
+        .title {
+          font-size: 1.4rem;
+          line-height: 40px;
+        }
+
+        .overview {
+          padding: 10px 0;
+          text-align: left;
+          h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 50px;
+          }
+          p {
+            line-height: 20px;
+            width: 100%;
+            padding: 0;
+            font-size: 1rem;
+          }
+         
+        }
+      }
+    }
+  }
+}

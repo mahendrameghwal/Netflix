@@ -2,116 +2,93 @@
   width: 70%;
   margin: 0 auto;
 }
-.faq-div{
-width: 100%;
-padding: 30px 0;
-background-color:$black;
+.faq-div {
+  width: 100%;
+  padding: 30px 0;
+  background-color: $black;
 
+  .faq {
+    background-color: $black;
+    padding: 30px 20px;
+    .icon-wrapper {
+      @include fonts(1.6rem, 500);
+    }
 
-    .faq {
-        background-color: $black;
-        padding: 30px 20px;
-        .icon-wrapper {
-          @include fonts(1.6rem, 500);
-        }
+    .faq-title {
+      background-color: $black;
+    }
+    .styles_faq-row-wrapper__3vA1D h2 {
+      margin: 0 auto;
+      text-align: center;
+      justify-content: space-between;
+      padding: 5px 0;
+      color: $white;
+    }
 
-        .faq-title{
-background-color: $black;
+    .styles_faq-row-wrapper__3vA1D
+      .styles_row-body__1NvUo
+      .styles_faq-row__2YF3c
+      .styles_row-title__1YiiY
+      .styles_row-title-text__1MuhU {
+      font-size: 1.6rem;
+      padding: 0 20px;
+    }
 
-            
-        }
-        .styles_faq-row-wrapper__3vA1D h2 {
-            margin: 0 auto;
-            text-align: center;
-            justify-content: space-between;
-            padding: 5px 0;
-            color: $white;
-       
-          }
-
-    
-      
-        .styles_faq-row-wrapper__3vA1D
-          .styles_row-body__1NvUo
-          .styles_faq-row__2YF3c
-          .styles_row-title__1YiiY
-          .styles_row-title-text__1MuhU  {
-          font-size: 1.6rem;
-          padding: 0 20px;
-          
-
-          
-
-        }
-
-        .styles_faq-row-wrapper__3vA1D .styles_row-body__1NvUo .styles_faq-row__2YF3c .styles_row-content__QOGZd .styles_row-content-text__2sgAB{
-            font-size: 1.2rem;
-            padding: 0 20px;
-            line-height: 1.4;
-   
-        }
-        .styles_faq-row-wrapper__3vA1D .styles_faq-row__2YF3c{
-            border-bottom: 3px solid #000;
-            margin: 4px 0;
-            
-          
-        }
-      }
+    .styles_faq-row-wrapper__3vA1D
+      .styles_row-body__1NvUo
+      .styles_faq-row__2YF3c
+      .styles_row-content__QOGZd
+      .styles_row-content-text__2sgAB {
+      font-size: 1.2rem;
+      padding: 0 20px;
+      line-height: 1.4;
+    }
+    .styles_faq-row-wrapper__3vA1D .styles_faq-row__2YF3c {
+      border-bottom: 3px solid #000;
+      margin: 4px 0;
+    }
+  }
 }
 
-
-
-
-@media  screen and (max-width:768px) {
-    
+@media screen and (max-width: 768px) {
+  .faq {
+    width: 100%;
+  }
+  .faq-div {
+    width: 100%;
+    padding: 30px 0;
+    background-color: $black;
 
     .faq {
-        width: 100%;
-        
+      background-color: $black;
+      padding: 10px 20px;
+      .icon-wrapper {
+        @include fonts(1.4rem, 400);
       }
-      .faq-div{
-      width: 100%;
-      padding: 30px 0;
-      background-color:$black;
-      
-      
-          .faq {
-            
-              background-color: $black;
-              padding: 10px 20px;
-              .icon-wrapper {
-                @include fonts(1.4rem, 400);
-              }
-              .styles_faq-row-wrapper__3vA1D h2 {
-                @include fonts(1.5rem, 500);
-              }
-      
-          
-            
-              .styles_faq-row-wrapper__3vA1D
-                .styles_row-body__1NvUo
-                .styles_faq-row__2YF3c
-                .styles_row-title__1YiiY
-                .styles_row-title-text__1MuhU  {
-               
-                @include fonts(1.3rem, 400);
-                
-                
-      
-              }
-      
-              .styles_faq-row-wrapper__3vA1D .styles_row-body__1NvUo .styles_faq-row__2YF3c .styles_row-content__QOGZd .styles_row-content-text__2sgAB{
-                @include fonts(1rem, 300);
-         
-              }
-              .styles_faq-row-wrapper__3vA1D .styles_faq-row__2YF3c{
-                  border-bottom: 4px solid #000;
-                  margin: 5px 0;
-                  padding: 0;
-                
-                  
-              }
-            }
+      .styles_faq-row-wrapper__3vA1D h2 {
+        @include fonts(1.5rem, 500);
       }
-}
 
+      .styles_faq-row-wrapper__3vA1D
+        .styles_row-body__1NvUo
+        .styles_faq-row__2YF3c
+        .styles_row-title__1YiiY
+        .styles_row-title-text__1MuhU {
+        @include fonts(1.3rem, 400);
+      }
+
+      .styles_faq-row-wrapper__3vA1D
+        .styles_row-body__1NvUo
+        .styles_faq-row__2YF3c
+        .styles_row-content__QOGZd
+        .styles_row-content-text__2sgAB {
+        @include fonts(1rem, 300);
+      }
+      .styles_faq-row-wrapper__3vA1D .styles_faq-row__2YF3c {
+        border-bottom: 4px solid #000;
+        margin: 5px 0;
+        padding: 0;
+      }
+    }
+  }
+}

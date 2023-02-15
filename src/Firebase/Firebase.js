@@ -76,7 +76,7 @@ return signOut(FirebaseAuth);
 
  const LoginOrNot  = user ? true : false;
 
-
+//  console.log(user);
 
   return (
     <FirebaseContext.Provider

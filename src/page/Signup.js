@@ -12,7 +12,7 @@ const Signup = () => {
 
   useEffect(()=>{
     if (Firebase.LoginOrNot) {
-      navigate("/main")
+      navigate("/signin")
     }
   
    },[Firebase, navigate ])

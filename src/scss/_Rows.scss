@@ -1,0 +1,36 @@
+.main-row-section {
+  .title {
+    color: $white;
+    padding: 0 4px;
+    font-weight: 300;
+  }
+
+  padding: 0 20px;
+  .row-section {
+    display: flex;
+    overflow-x: scroll;
+    margin: 10px 0;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .poster-img {
+      gap: 15px;
+      display: flex;
+
+      img {
+        cursor: pointer;
+        height: 250px;
+        transition: 0.5s;
+        margin-right: 20px;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .Load {
+    background-color: red;
+  }
+}
