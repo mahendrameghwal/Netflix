@@ -4,10 +4,10 @@
 
 ### `This is a Netflix clone built with React, using other technologies such as:`
 
-React Router for navigation
-Axios for making HTTP requests
-Sass for styling
-TMDB api for getting data from server
+- React Router for navigation
+- Axios for making HTTP requests
+- Sass for styling
+- TMDB api for getting data from server
 
 Table of Contents
 Getting started
