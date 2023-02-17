@@ -9,13 +9,12 @@ const SimilarMoviesElement = ({ UrlImage, similardata  }) => {
     <div className="recommend">
       {similardata.map((similar, i) => {
         if (similar.backdrop_path === null) {
-          return null;
+          return <div key={i}>{null} </div>;
         } else {
           return (
-            <Link to={`/moviedetail/${similar.id}`}>
-              <img
+            <Link key={i} to={`/moviedetail/${similar.id}`}>
+              <img 
                 alt={similardata.title}
-                key={i}
                 src={UrlImage.concat(similar.backdrop_path)}
               />
                </Link>

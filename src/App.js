@@ -15,11 +15,11 @@ const App = () => {
     <div className="App">
       <Header />
         <Routes>
-          <Route path={"/"} element={<Home />} />
+          <Route index path={"/"} element={<Home />} />
           <Route path={"/signin"} element={<Signin />} />
           <Route path={"/signup"} element={<Signup />} />
           <Route path={"/main"} element={<Main />} />
-          <Route path={"/moviedetail/:id"} element={<MoviesDetails />} ></Route>
+          <Route index path={"/moviedetail/:id"} element={<MoviesDetails /> }  />
           <Route path={"*"} element={<h2>No url found</h2>} />
           </Routes>
           </div>
