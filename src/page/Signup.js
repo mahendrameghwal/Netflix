@@ -1,23 +1,10 @@
-import React, { useState , useEffect } from "react";
+import React, { useState } from "react";
 import { Section1 } from "../components/Mainsection";
 import { Link, useNavigate } from "react-router-dom";
-import { Usefirebase } from "../Firebase/Firebase";
 
 const Signup = () => {
-  const Firebase = Usefirebase();
-  
-
   const navigate = useNavigate();
 
-
-  useEffect(()=>{
-    if (Firebase.LoginOrNot) {
-      navigate("/signin")
-    }
-  
-   },[Firebase, navigate ])
-
- 
   //! User information
   const [values, setvalues] = useState({
     name: "",
@@ -30,46 +17,7 @@ const Signup = () => {
   const HandleForm = async (e) => {
     e.preventDefault();
 
-    await Firebase.SingUpUserEmailAndPassword(values.email, values.password)
-    .then((Response) => {
-      navigate("/signin");
-      Firebase.PutData("users/" + values.name, values.email, values.password);
-          console.log(Response);
-    })
-    .catch((error) => {
-          switch (error.code) {
-          case "auth/email-already-in-use":
-          seterrmsg(
-            "The email address is already in use by another account."
-          );
-          break;
-           case "auth/network-request-failed":
-          seterrmsg(
-            "A network error has occurred. Please check your connection and try again."
-          );
-          break;
-
-          case "auth/invalid-email":
-          seterrmsg("The email address is not valid");
-          break;
-          case "auth/weak-password":
-          seterrmsg("please fill a strong password");
-          break;
-          default:
-          if (!values.name || !values.email || !values.password) {
-            seterrmsg("please fill All values correctly ");
-          } else if (!values.name) {
-            seterrmsg("please fill a vaild name ");
-          } else if (!values.email) {
-            seterrmsg("please fill a vaild email  ");
-          } else if (!values.password) {
-            seterrmsg("please  fill password ");
-          }
-
-          break;
-      }
-    });
-
+    navigate("/signin");
   };
 
   return (
@@ -119,21 +67,18 @@ const Signup = () => {
               placeholder="password"
               required
             />
-           
-              <button
-                onClick={HandleForm}
-                type="submit"
-                className="submit-btn btn-read btn"
-              >
-                Create acount
-              </button>
-          
+            <button
+              onClick={HandleForm}
+              type="submit"
+              className="submit-btn btn-read btn"
+            >
+              Create acount
+            </button>
             <Link
               style={{
                 fontSize: "0.90rem",
                 textAlign: "center",
                 color: "#737373",
-                
               }}
               to={"/signin"}
             >

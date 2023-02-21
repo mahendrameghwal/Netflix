@@ -2,11 +2,14 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import OfficialVideosElement from "../components/OfficialVideosElement";
 import SimilarMoviesElement from "../components/SimilarMoviesElement";
 
+
 const MoviesDetails = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [isloaded, setloaded] = useState(true);
   const [iserror, seterror] = useState(false);
@@ -15,7 +18,9 @@ const MoviesDetails = () => {
   const [Castdata, SetCastdata] = useState(null);
   const [videosdata, Setvideosdata] = useState(null);
 
-  const [ImageUrl, setImageUrl] = useState("https://image.tmdb.org/t/p/original");
+  const [ImageUrl, setImageUrl] = useState(
+    "https://image.tmdb.org/t/p/original"
+  );
 
   // https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1
 
@@ -91,7 +96,11 @@ const MoviesDetails = () => {
     videosdata === null ||
     ResultFromApi === null
   ) {
-    return <div className="Load-div"><h2 style={{ color: "white" }}>Loading.......</h2></div>;
+    return (
+      <div className="Load-div">
+        <h2 style={{ color: "white" }}>Loading.......</h2>
+      </div>
+    );
   } else if (iserror) {
     return <h2>{iserror}</h2>;
   } else {
@@ -137,10 +146,12 @@ const MoviesDetails = () => {
                 </section>
 
                 <section className="movie-times">
-                <span>User Score</span>
-              <span>{Math.ceil(ResultFromApi.vote_average)*10} <strong>%</strong></span>
-               
-              </section>
+                  <span>User Score</span>
+                  <span>
+                    {Math.ceil(ResultFromApi.vote_average) * 10}{" "}
+                    <strong>%</strong>
+                  </span>
+                </section>
 
                 <section>
                   <h2 className="overview">similar Movies</h2>
@@ -187,7 +198,9 @@ const MoviesDetails = () => {
             )}
           </div>
         ) : (
-          <div className="Load-div"><h2 style={{ color: "white" }}>Loading.......</h2></div>
+          <div className="Load-div">
+            <h2 style={{ color: "white" }}>Loading.......</h2>
+          </div>
         )}
       </>
     );

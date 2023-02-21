@@ -1,0 +1,16 @@
+.error-div{
+  display: grid;
+  place-items: center;
+    height: 90vh;
+    color: rgb(103, 103, 103);
+  .wrapper{
+         text-align: center;
+      
+         h1{
+            font-weight: 400;
+         }
+         h2{
+            line-height: 50px;
+         }
+    }
+}

@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate} from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { Usefirebase } from "../Firebase/Firebase";
+
 import { Section1 } from "../components/Mainsection";
 import { BiShow, BiHide } from "react-icons/bi";
 
 const Signin = () => {
-  const Firebase = Usefirebase();
-  const navigate = useNavigate();
 
 
-  useEffect(()=>{
-    if (Firebase.LoginOrNot) {
-      navigate("/main")
-    }
   
-   },[Firebase, navigate ])
 
   //for password show and hide
   const [showpassword, setshowpassword] = useState();
@@ -33,16 +26,8 @@ const Signin = () => {
    
   const HandleGoogle= async(e)=>{
     e.preventDefault();
-       try {
-         await Firebase.SignWithGoogle().then((response)=>{
-           console.log(response);
-           navigate("/main")
-        })
-       } catch (error) {
-        setErrorMessage(error)
-       }
-        
-     
+    
+      Navigate("/main")
   }
 
   
@@ -51,50 +36,6 @@ const Signin = () => {
 
   const HandleForm = async (e) => {
     e.preventDefault();
-    try {
-      await Firebase.LoginUserWithEmailAndPassword(
-        values.email,
-        values.password
-      )
-        .then((response) => {
-          console.log(response);
-          console.log(Firebase);
-          navigate("/main");
-        })
-        .catch((error) => {
-          console.log(error.code);
-          switch (error.code) {
-            case "auth/network-request-failed":
-              setErrorMessage(
-                "A network error has occurred. Please check your connection and try again"
-              );
-
-              break;
-            case "auth/invalid-email":
-              setErrorMessage("The email address is not valid");
-
-              break;
-            case "auth/wrong-password":
-              setErrorMessage("wroung password you have entered !!");
-              break;
-            case "auth/user-not-found":
-              setErrorMessage("User not Found ");
-              break;
-            default:
-              if (!values.name || !values.email || !values.password) {
-                setErrorMessage("please fill All values correctly ");
-              } else if (!values.email) {
-                setErrorMessage("please fill a vaild email  ");
-              } else if (!values.password) {
-                setErrorMessage("please fill password ");
-              }
-
-              break;
-          }
-        });
-    } catch (error) {
-      setErrorMessage(error);
-    }
   };
 
 

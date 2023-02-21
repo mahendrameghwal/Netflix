@@ -33,7 +33,11 @@ Sign up, sign in, and sign out.
 
 ### Here are some screenshots of the Netflix clone:
 
-Browse page screenshot
+without sign In homepage
+
+
+Home page screenshot
+
 
 Movie details page screenshot
 

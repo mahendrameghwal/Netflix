@@ -8,7 +8,7 @@ import Signup from "./page/Signup";
 import Main from "./page/Main";
 import MoviesDetails from "./page/MoviesDetails";
 import SearchResultComponent from "./page/SearchResultComponent";
-
+import ErrorPages from "./Error/ErrorPages";
 
 
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
           <Route path={"/main"} element={<Main />} />
           <Route path={"/searchresult"} element={<SearchResultComponent/>} />
           <Route index path={"/moviedetail/:id"} element={<MoviesDetails /> }  />
-          <Route path={"*"} element={<h2>No url found</h2>} />
+          <Route path={"*"} element={<ErrorPages />} />
           </Routes>
           </div>
     </BrowserRouter>
