@@ -91,7 +91,7 @@ const MoviesDetails = () => {
     videosdata === null ||
     ResultFromApi === null
   ) {
-    return <h2 style={{ color: "white" }}>Loading.......</h2>;
+    return <div className="Load-div"><h2 style={{ color: "white" }}>Loading.......</h2></div>;
   } else if (iserror) {
     return <h2>{iserror}</h2>;
   } else {
@@ -135,6 +135,13 @@ const MoviesDetails = () => {
                     return <span key={i}>{x.name}</span>;
                   })}
                 </section>
+
+                <section className="movie-times">
+                <span>User Score</span>
+              <span>{Math.ceil(ResultFromApi.vote_average)*10} <strong>%</strong></span>
+               
+              </section>
+
                 <section>
                   <h2 className="overview">similar Movies</h2>
                   <div className="recommend">
@@ -180,7 +187,7 @@ const MoviesDetails = () => {
             )}
           </div>
         ) : (
-          <h2>loading.....</h2>
+          <div className="Load-div"><h2 style={{ color: "white" }}>Loading.......</h2></div>
         )}
       </>
     );

@@ -9,6 +9,24 @@
   z-index: -1;
   display: block;
   align-items: center;
+  
+    
+  
+    .search-btn{
+      height: 25px;
+      position: absolute;
+      right: 32%;
+      top: -40px;
+      cursor: pointer;
+    }
+    .search-bar{
+      transition: 0.5s  !important;
+      border: none;
+      outline: none;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgb(209, 204, 204);
+    }
 
   .movies-details-wrapper {
     color: white;

@@ -7,11 +7,7 @@ const OfficialVideosElement = ({ data }) => {
 
   return (
     <div>
-      {data.length === 0 ? (
-        <div>{null}</div>
-      ) : (
-        <h2 className="movieinfo">Official videos</h2>
-      )}
+      {data.length === 0 ? ( <div>{null}</div> ) : ( <h2 className="movieinfo">Official videos</h2> )}
 
       <section className=" ofvideos">
         <section>

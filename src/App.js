@@ -7,6 +7,9 @@ import Signin from "./page/Signin";
 import Signup from "./page/Signup";
 import Main from "./page/Main";
 import MoviesDetails from "./page/MoviesDetails";
+import SearchResultComponent from "./page/SearchResultComponent";
+
+
 
 const App = () => {
   return (
@@ -19,6 +22,7 @@ const App = () => {
           <Route path={"/signin"} element={<Signin />} />
           <Route path={"/signup"} element={<Signup />} />
           <Route path={"/main"} element={<Main />} />
+          <Route path={"/searchresult"} element={<SearchResultComponent/>} />
           <Route index path={"/moviedetail/:id"} element={<MoviesDetails /> }  />
           <Route path={"*"} element={<h2>No url found</h2>} />
           </Routes>
