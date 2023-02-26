@@ -1,45 +1,61 @@
+/* eslint-disable no-lone-blocks */
 import React, { useState } from "react";
-import { Link, Navigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 import { Section1 } from "../components/Mainsection";
 import { BiShow, BiHide } from "react-icons/bi";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://localhost:3000",
+  withCredentials: true, // enable sending cookies with requests
+});
+
+console.log(api);
 
 const Signin = () => {
-
-
-  
-
+  const navigate = useNavigate();
   //for password show and hide
   const [showpassword, setshowpassword] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const [ErrorMessage, setErrorMessage] = useState("");
-
-
-
-  const [values, setvalues] = useState({
+  const [afterlogin, setafterlogin] = useState(null);
+  const [user, setUser] = useState({
     email: "",
     password: "",
   });
-    
 
-   
-  const HandleGoogle= async(e)=>{
-    e.preventDefault();
-    
-      Navigate("/main")
-  }
-
-  
-  
-
-
-  const HandleForm = async (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
   };
 
+  const login = async () => {
+    const { email, password } = user;
+    // if (!email || !password) {
+    //   setErrorMessage("Please Fill email and password");
+    // }
 
-
+    await axios
+      .post("http://localhost:8800/signin", user)
+      .then((resp) => {
+        alert(resp.data.message);
+        if (resp.data.LoggedInUser) {
+          const sessid = localStorage.setItem('sessionId', resp.data.sessionId);
+         console.log(sessid);
+          navigate("/main");
+          setLoggedIn(true)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="signin">
       <Section1 />
@@ -49,79 +65,67 @@ const Signin = () => {
         >
           {ErrorMessage}
         </p>
-        <form
-          onSubmit={(e) => {
-            HandleForm(e);
-          }}
-        >
-          <section className="inputs-container">
-            <h2>Sign in</h2>
-            <label>E-mail</label> <br />
-            <input
-              onChange={(e) => {
-                setvalues((prev) => ({ ...prev, email: e.target.value }));
-              }}
-              type={"email"}
-              placeholder="E-mail"
-            />
-            <br />
-            <label>Password</label> <br />
-            <div>
-              <input
-                className="passwords"
-                type={!showpassword ? "password" : "text"}
-                onChange={(e) => {
-                  setvalues((prev) => ({ ...prev, password: e.target.value }));
-                }}
-                placeholder="Password"
-              />
-              {showpassword ? (
-                <BiHide
-                  onClick={() => {
-                    setshowpassword(!showpassword);
-                  }}
-                  className="showhideicon"
-                />
-              ) : (
-                <BiShow
-                  onClick={() => {
-                    setshowpassword(!showpassword);
-                  }}
-                  className="showhideicon"
-                />
-              )}
-            </div>
-            <br />
-            <section style={{ margin: "20px 0" }}>
-              <button onClick={HandleForm} className="submit-btn btn-read btn">
-                Log in
-              </button>
-              <br />
-              <div
-                className="w-100"
-                style={{ textAlign: "center", margin: "10px 0 -10px 0" }}
-              >
-                {" "}
-                <span>OR</span>
-              </div>
-             
-             
-            </section>
-          </section>
 
-          <Link to={"/signup"}>
-            <button type="submit" className="signupbtn btn ">
+        <section className="inputs-container">
+          <h2>Sign in</h2>
+          <br />
+          <label>E-mail</label> <br />
+          <input
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+            placeholder="Enter your Email"
+            type={"email"}
+          />
+          <br />
+          <label>Password</label> <br />
+          <div>
+            <input
+              type="password"
+              name="password"
+              value={user.password}
+              onChange={handleChange}
+              placeholder="Enter your Password"
+            ></input>
+            {showpassword ? (
+              <BiHide
+                onClick={() => {
+                  setshowpassword(!showpassword);
+                }}
+                className="showhideicon"
+              />
+            ) : (
+              <BiShow
+                onClick={() => {
+                  setshowpassword(!showpassword);
+                }}
+                className="showhideicon"
+              />
+            )}
+          </div>
+          <br />
+          <section style={{ margin: "20px 0" }}>
+            <button onClick={login} className="submit-btn btn-read btn">
+              Log in
+            </button>
+            <br />
+            <div
+              className="w-100"
+              style={{ textAlign: "center", margin: "10px 0 -10px 0" }}
+            >
+              {" "}
+              <span>OR</span>
+            </div>
+          </section>
+        </section>
+
+        <Link to={"/signup"}>
+          <div className="tl">
+            <button type="submit" className="  signupbtn btn ">
               new to netflix
             </button>
-          </Link>
-        </form>
-
-        <button onClick={HandleGoogle}
-        type="submit"
-        className=" submit-btn google btn-read btn my"
-      >
-        <FcGoogle /> Sign with Google
-      </button>
+          </div>
+        </Link>
       </div>
     </div>
   );

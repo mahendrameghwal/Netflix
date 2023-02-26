@@ -2,11 +2,13 @@ import { logo } from "../images/image";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+
   const navigate = useNavigate();
 
-  const Signoutuser = () => {
-    navigate("/");
-  };
+  // const Signoutuser = ({userdata}) => {
+
+  //   navigate("/");
+  // };
 
   const Signinuser = () => {
     navigate("/signin");
@@ -24,7 +26,7 @@ const Header = () => {
         <button className="btn btn-header transparent">English</button>
 
         {false ? (
-          <button onClick={Signoutuser} className="btn btn-header btn-read">
+          <button className="btn btn-header btn-read">
             Sign out
           </button>
         ) : (

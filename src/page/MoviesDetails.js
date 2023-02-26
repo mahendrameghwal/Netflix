@@ -6,7 +6,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import OfficialVideosElement from "../components/OfficialVideosElement";
 import SimilarMoviesElement from "../components/SimilarMoviesElement";
 
-
 const MoviesDetails = () => {
   const navigate = useNavigate();
 
@@ -98,7 +97,13 @@ const MoviesDetails = () => {
   ) {
     return (
       <div className="Load-div">
-        <h2 style={{ color: "white" }}>Loading.......</h2>
+        <h2 style={{ color: "white" }}>
+          <img
+            style={{ height: "200px", width: "50%" }}
+            src="https://media.wired.com/photos/592744d3f3e2356fd800bf00/master/w_2560%2Cc_limit/Netflix_LoadTime.gif"
+            alt="loading"
+          />
+        </h2>
       </div>
     );
   } else if (iserror) {

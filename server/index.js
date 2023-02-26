@@ -1,13 +1,26 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
-const bcrypt = require('bcrypt');
-const { Navigate } = require("react-router-dom");
+
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+
+// bcrypt
+//   .genSalt(saltRounds)
+//   .then(salt => {
+//     console.log('Salt: ', salt)
+//     return bcrypt.hash(77878787878, salt)
+//   })
+//   .then(hash => {
+//     console.log('Hash: ', hash)
+//   })
+//   .catch(err=>{
+//     console.log(err.message);
+//   })
 
 mongoose.connect(
   "mongodb+srv://solankirakesh895:AHouuIH0Z2IOmc4X@cluster0.oiu5xv8.mongodb.net/users?retryWrites=true&w=majority",
@@ -22,8 +35,8 @@ mongoose.connect(
 
 const userSchema = new mongoose.Schema({
   name: String,
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  email: String,
+  password: String,
 });
 
 const User = new mongoose.model("Users", userSchema);
@@ -47,22 +60,22 @@ app.post("/signup", async (req, res) => {
 app.post("/signin", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email, password });
-    if (!user) {
-      return res.send({ message: "Invalid  user" });
-    } 
-    
-    else if (user && email &&  password === !User.password) {
-      return res.send({ message: "Invalid  password" });
+    const preUser = await User.findOne({ email: email });
+
+    if (preUser) {
+      if (preUser.password === password) {
+        res.send({ message: "login successful", LoggedInUser: preUser });
+      } else {
+        res.send({ message: "Please check your Email and  password " });
+      }
     } else {
-      res.send({ message: "log in successfully" });
-      
+      res.send({ message: "user not found" });
     }
   } catch (error) {
-    return res.send({ message: error });
-
+    res.send({ message: `${error.message}` });
   }
 });
+
 
 app.listen(8800, () => {
   console.log("BE started at port 8800");

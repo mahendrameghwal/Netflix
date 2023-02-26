@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState ,useEffect} from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./page/Home";
 import Header from "./components/Header";
@@ -12,14 +12,19 @@ import ErrorPages from "./Error/ErrorPages";
 
 
 const App = () => {
+ 
+
+
   return (
-    
+    <>
     <BrowserRouter>
     <div className="App">
       <Header />
         <Routes>
           <Route index path={"/"} element={<Home />} />
-          <Route path={"/signin"} element={<Signin />} />
+
+         
+        <Route path={"/signin"} element={<Signin  />} />
           <Route path={"/signup"} element={<Signup />} />
           <Route path={"/main"} element={<Main />} />
           <Route path={"/searchresult"} element={<SearchResultComponent/>} />
@@ -28,7 +33,7 @@ const App = () => {
           </Routes>
           </div>
     </BrowserRouter>
-
+    </>
   );
 };
 
