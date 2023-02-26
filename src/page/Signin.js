@@ -7,14 +7,7 @@ import { Section1 } from "../components/Mainsection";
 import { BiShow, BiHide } from "react-icons/bi";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  withCredentials: true, // enable sending cookies with requests
-});
-
-console.log(api);
-
-const Signin = () => {
+const Signin = ({setLoginUser}) => {
   const navigate = useNavigate();
   //for password show and hide
   const [showpassword, setshowpassword] = useState();
@@ -37,20 +30,17 @@ const Signin = () => {
 
   const login = async () => {
     const { email, password } = user;
-    // if (!email || !password) {
-    //   setErrorMessage("Please Fill email and password");
-    // }
+    
 
     await axios
       .post("http://localhost:8800/signin", user)
       .then((resp) => {
-        alert(resp.data.message);
-        if (resp.data.LoggedInUser) {
-          const sessid = localStorage.setItem('sessionId', resp.data.sessionId);
-         console.log(sessid);
-          navigate("/main");
-          setLoggedIn(true)
-        }
+        alert(resp.data.message)
+         if (resp.data.LoggedInUser){
+          setLoginUser(resp.data.LoggedInUser);
+           navigate("/main")      
+          localStorage.setItem("LoggedInuser", JSON.stringify(resp.data.LoggedInUser._id));
+         }
       })
       .catch((err) => {
         console.log(err);

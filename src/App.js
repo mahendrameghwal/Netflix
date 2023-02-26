@@ -1,5 +1,5 @@
 import React ,{useState ,useEffect} from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate  } from "react-router-dom";
 import Home from "./page/Home";
 import Header from "./components/Header";
 // import Footer from "./components/Footer";
@@ -12,8 +12,13 @@ import ErrorPages from "./Error/ErrorPages";
 
 
 const App = () => {
- 
+const  [loginUser, setLoginUser] = useState({});
 
+console.log(loginUser);
+
+
+
+ const verifyusers = JSON.parse(window.localStorage.getItem('LoggedInuser'))
 
   return (
     <>
@@ -21,10 +26,13 @@ const App = () => {
     <div className="App">
       <Header />
         <Routes>
-          <Route index path={"/"} element={<Home />} />
+{
+  loginUser ==={} ?  <Route exact index path={"/"} element={verifyusers?<Main/>:<Home />} />: <Route path={"/main"} element={<Main />} />
+}
 
-         
-        <Route path={"/signin"} element={<Signin  />} />
+
+        <Route exact index path={"/"} element={<Home />} />
+        <Route path={"/signin"} element={<Signin setLoginUser={setLoginUser} />} />
           <Route path={"/signup"} element={<Signup />} />
           <Route path={"/main"} element={<Main />} />
           <Route path={"/searchresult"} element={<SearchResultComponent/>} />
