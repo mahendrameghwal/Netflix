@@ -2,7 +2,8 @@ import axios, { AxiosError } from "axios";
 import React, { useState, useEffect } from "react";
 import Rows from "./Rows";
 
-const HomeContent = () => {
+const HomeContent = (props) => {
+ console.log(props);
   const [isloaded, setisloaded] = useState(true);
   const [Popular, setPopular] = useState([]);
   const [NowPlaying, setNowPlaying] = useState([]);

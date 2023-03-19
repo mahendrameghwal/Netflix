@@ -1,29 +1,20 @@
-const express = require("express");
+const express = require('express');
 const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
+require('dotenv').config();
+const port = process.env.PORT;
+const DatabaseUrl = process.env.DATABASE_URL;
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
 
-// bcrypt
-//   .genSalt(saltRounds)
-//   .then(salt => {
-//     console.log('Salt: ', salt)
-//     return bcrypt.hash(77878787878, salt)
-//   })
-//   .then(hash => {
-//     console.log('Hash: ', hash)
-//   })
-//   .catch(err=>{
-//     console.log(err.message);
-//   })
+
+
 
 mongoose.connect(
-  "mongodb+srv://solankirakesh895:AHouuIH0Z2IOmc4X@cluster0.oiu5xv8.mongodb.net/users?retryWrites=true&w=majority",
+  DatabaseUrl,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -79,6 +70,6 @@ app.post("/signin", async (req, res) => {
 });
 
 
-app.listen(8800, () => {
+app.listen(port, () => {
   console.log("BE started at port 8800");
 });

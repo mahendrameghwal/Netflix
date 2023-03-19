@@ -35,7 +35,8 @@ const Signin = ({setLoginUser}) => {
     await axios
       .post("http://localhost:8800/signin", user)
       .then((resp) => {
-        alert(resp.data.message)
+        // alert(resp.data.message)
+        setErrorMessage(resp.data.message);
          if (resp.data.LoggedInUser){
           setLoginUser(resp.data.LoggedInUser);
            navigate("/main")      

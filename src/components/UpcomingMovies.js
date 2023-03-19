@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Requests from "../api/Request";
 import { ImPlay3 } from "react-icons/im";
-import SearchResultComponent from "../page/SearchResultComponent";
-import { useNavigate, useHis } from "react-router-dom";
+// import SearchResultComponent from "../page/SearchResultComponent";
+import { useNavigate } from "react-router-dom";
+import HomeContent from "./HomeContent";
 
 const UpcomingMovies = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const UpcomingMovies = () => {
   const [results, setresults] = useState(null);
 
   const [showInput, setShowInput] = useState(false);
-  const [SearchResult, setSearchResult] = useState(null);
+  const [SearchResult, setSearchResult] = useState("");
   const [Query, setQuery] = useState("");
   const imgUrl = "https://image.tmdb.org/t/p/original";
   const SearchApiURL = `https://api.themoviedb.org/3/search/movie?api_key=b0a995e6f30e543c9851f36efe29711a&language=en-US&query=${Query}&page=1&include_adult=false`;
@@ -46,6 +47,9 @@ const UpcomingMovies = () => {
       .get(SearchApiURL)
       .then((resp) => {
         setSearchResult(resp.data.results);
+        console.log(SearchResult);
+      return SearchResult && <HomeContent Query={`Search Results of ${Query}`} data={SearchResult}/>
+
       })
       .catch((error) => {
         seterrormsg(error.message);
